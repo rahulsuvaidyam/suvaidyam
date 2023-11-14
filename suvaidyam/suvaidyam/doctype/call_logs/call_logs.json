@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:reference_id",
+ "creation": "2023-11-14 10:38:27.423985",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_id",
+  "phone_number",
+  "call_type",
+  "call_status",
+  "duration",
+  "call_start_time",
+  "call_end_time",
+  "agent_call_status",
+  "beneficiary_call_status",
+  "column_break_cfgm",
+  "state",
+  "centre",
+  "campaign",
+  "beneficiary",
+  "user",
+  "task"
+ ],
+ "fields": [
+  {
+   "default": "Inbound",
+   "fieldname": "call_type",
+   "fieldtype": "Select",
+   "label": "Call Type",
+   "options": "\nInbound\nOutbound"
+  },
+  {
+   "default": "INITIATED",
+   "fieldname": "call_status",
+   "fieldtype": "Select",
+   "label": "Call Status",
+   "options": "MISSED\nANSWER\nCANCEL\nINITIATED"
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Duration",
+   "label": "Duration"
+  },
+  {
+   "fieldname": "call_start_time",
+   "fieldtype": "Data",
+   "label": "Call Start Time"
+  },
+  {
+   "fieldname": "call_end_time",
+   "fieldtype": "Data",
+   "label": "Call End Time"
+  },
+  {
+   "fieldname": "column_break_cfgm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "campaign",
+   "fieldtype": "Link",
+   "label": "Campaign",
+   "options": "Campaign"
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "label": "Beneficiary",
+   "options": "Beneficiary"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "centre",
+   "fieldtype": "Link",
+   "label": "Centre",
+   "options": "Centre"
+  },
+  {
+   "fieldname": "agent_call_status",
+   "fieldtype": "Select",
+   "label": "Agent Call Status",
+   "options": "\nMISSED\nANSWER\nCANCEL"
+  },
+  {
+   "fieldname": "beneficiary_call_status",
+   "fieldtype": "Select",
+   "label": "Beneficiary Call Status",
+   "options": "\nMISSED\nANSWER\nCANCEL"
+  },
+  {
+   "fieldname": "reference_id",
+   "fieldtype": "Data",
+   "label": "Reference Id",
+   "unique": 1
+  },
+  {
+   "default": "+91-",
+   "fieldname": "phone_number",
+   "fieldtype": "Phone",
+   "in_list_view": 1,
+   "label": "Phone Number",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-11-14 11:08:07.903645",
+ "modified_by": "Administrator",
+ "module": "SUVAIDYAM",
+ "name": "Call Logs",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "phone_number"
+}

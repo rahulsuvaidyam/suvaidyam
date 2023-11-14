@@ -1,0 +1,178 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-09 21:03:13.913064",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "first_name",
+  "last_name",
+  "phone_number",
+  "branching",
+  "parent1",
+  "column_break_yded",
+  "gender",
+  "date_of_birth",
+  "address_1",
+  "geo_tab",
+  "column_break_hzez",
+  "state",
+  "centre",
+  "district",
+  "block",
+  "village",
+  "column_break_pqyy",
+  "type_of_contact",
+  "campaign"
+ ],
+ "fields": [
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Last Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "Male\nFemale\nOthers",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of birth",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_1",
+   "fieldtype": "Small Text",
+   "label": "Address 1"
+  },
+  {
+   "fieldname": "column_break_hzez",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "centre",
+   "fieldtype": "Link",
+   "label": "Centre",
+   "options": "Centre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District",
+   "reqd": 1
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Link",
+   "label": "Block",
+   "options": "Block",
+   "reqd": 1
+  },
+  {
+   "fieldname": "geo_tab",
+   "fieldtype": "Tab Break",
+   "label": "Geo"
+  },
+  {
+   "default": "+91-",
+   "fieldname": "phone_number",
+   "fieldtype": "Phone",
+   "label": "Phone Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yded",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branching",
+   "fieldtype": "Select",
+   "label": "Branching",
+   "options": "Parent\nChild",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_of_contact",
+   "fieldtype": "Link",
+   "label": "Type of Contact",
+   "options": "Type of Contact"
+  },
+  {
+   "depends_on": "eval:(doc.branching ==='Child')",
+   "fieldname": "parent1",
+   "fieldtype": "Link",
+   "label": "Parent",
+   "mandatory_depends_on": "eval:(doc.branching ==='Child')",
+   "options": "Beneficiary"
+  },
+  {
+   "fieldname": "village",
+   "fieldtype": "Link",
+   "label": "Village",
+   "options": "Village"
+  },
+  {
+   "fieldname": "column_break_pqyy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "campaign",
+   "fieldtype": "Table MultiSelect",
+   "label": "Campaign",
+   "options": "ChildCampaign"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-11-10 11:27:45.189132",
+ "modified_by": "Administrator",
+ "module": "SUVAIDYAM",
+ "name": "Beneficiary",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "first_name",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}
