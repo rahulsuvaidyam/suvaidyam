@@ -85,7 +85,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-13 15:42:16.744433",
+ "modified": "2023-11-16 12:13:25.738249",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign",
@@ -134,8 +134,7 @@
    "read": 1,
    "report": 1,
    "role": "Team Lead",
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "email": 1,

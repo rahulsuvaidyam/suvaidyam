@@ -4,7 +4,7 @@
 frappe.ui.form.on("Beneficiary", {
     refresh(frm) {
         // calling popup
-        if (frm?.doc?.first_name !== undefined) {
+        if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname ==='Agent') {
             let d = new frappe.ui.Dialog({
                 title: 'Make a call',
                 fields: [

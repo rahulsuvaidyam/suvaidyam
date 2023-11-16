@@ -29,7 +29,11 @@ frappe.ui.form.on("Team", {
             if(doc.centre){
                 console.log(doc)
                 return {
-                    filters: { 'centre': doc.centre },
+                    filters: {
+                        'centre': doc.centre,
+                        // Filter users by role from tabUserRole table
+                        'role_profile_name': 'Agent' 
+                    },
                     page_length: 1000
                 };
             }else{
@@ -41,7 +45,7 @@ frappe.ui.form.on("Team", {
             if(doc.centre){
                 console.log(doc)
                 return {
-                    filters: { 'centre': doc.centre },
+                    filters: { 'centre': doc.centre ,'role_profile_name': 'Team Lead' },
                     page_length: 1000
                 };
             }else{
