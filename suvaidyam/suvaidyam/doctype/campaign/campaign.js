@@ -3,6 +3,11 @@
 
 frappe.ui.form.on("Campaign", {
     refresh(frm) {
+
+        frm.add_custom_button('Form',()=>{
+           frappe.set_route('List', 'Campaign Form',{name:frm?.doc?.name});
+        })
+        // depended dropdown
         frm.fields_dict["centre"].get_query = function (doc) {
             return { filters: { 'state': 'Please select state' } };
         },

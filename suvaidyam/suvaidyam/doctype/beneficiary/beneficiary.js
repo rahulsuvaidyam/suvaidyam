@@ -4,7 +4,7 @@
 frappe.ui.form.on("Beneficiary", {
     refresh(frm) {
         // calling popup
-        if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname ==='Agent') {
+        if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname === 'Agent') {
             let d = new frappe.ui.Dialog({
                 title: 'Make a call',
                 fields: [
@@ -134,5 +134,33 @@ frappe.ui.form.on("Beneficiary", {
     },
     block: function (frm) {
         frm.set_value('village', '')
+    },
+    // match number to parent
+    phone_number: function (frm) {
+        if (frm.doc?.phone_number.length >= 12) {
+            frappe.call({
+                method: 'frappe.client.get_list',
+                args: {
+                    doctype: 'Beneficiary',
+                    filters: { 'phone_number': frm?.doc.phone_number, 'branching': 'Parent' },
+                    fields: ['name']
+                },
+                callback: function (response) {
+                    const matchedBeneficiary = response.message[0];
+                    if (matchedBeneficiary) {
+                        frm.set_value('branching', 'Child')
+                        frm.set_value('parent1', matchedBeneficiary.name); 
+                    } else {
+                        frm.set_value('branching', 'Parent')
+                        frm.set_value('parent1', '') 
+                    }
+                    setTimeout(function() {
+                        frm.set_df_property('parent1', 'read_only', matchedBeneficiary ? 1 : 0);
+                        frm.set_df_property('branching', 'read_only', matchedBeneficiary ? 1 : 0);
+                    }, 100);
+                }
+            });
+        }
+
     },
 });
