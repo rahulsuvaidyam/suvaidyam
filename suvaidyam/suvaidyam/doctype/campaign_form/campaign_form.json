@@ -1,76 +1,46 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:team-{###}",
- "creation": "2023-11-09 18:04:30.293738",
+ "creation": "2023-11-17 11:56:00.862893",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "name1",
-  "description",
-  "column_break_wleb",
-  "state",
-  "centre",
-  "agent",
-  "team_lead"
+  "campaign",
+  "title",
+  "fields"
  ],
  "fields": [
   {
-   "fieldname": "name1",
+   "fieldname": "title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Name",
-   "reqd": 1
+   "label": "Title"
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Small Text",
-   "label": "Description"
-  },
-  {
-   "fieldname": "column_break_wleb",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "state",
+   "fieldname": "campaign",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "State",
-   "options": "State",
+   "in_standard_filter": 1,
+   "label": "Campaign",
+   "options": "Campaign",
+   "read_only": 1,
    "reqd": 1
   },
   {
-   "fieldname": "centre",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Centre",
-   "options": "Centre",
-   "reqd": 1
-  },
-  {
-   "fieldname": "agent",
-   "fieldtype": "Table MultiSelect",
-   "label": "Agent",
-   "options": "Agents",
-   "reqd": 1
-  },
-  {
-   "fieldname": "team_lead",
-   "fieldtype": "Link",
-   "label": "Team Lead",
-   "options": "User",
-   "reqd": 1
+   "fieldname": "fields",
+   "fieldtype": "Table",
+   "label": "Fields",
+   "options": "DocField"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 12:18:07.297186",
+ "modified": "2023-12-02 12:36:53.977105",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
- "name": "Team",
- "naming_rule": "Expression",
+ "name": "Campaign Form",
  "owner": "Administrator",
  "permissions": [
   {
@@ -99,7 +69,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -133,7 +102,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "name1",
+ "title_field": "title",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

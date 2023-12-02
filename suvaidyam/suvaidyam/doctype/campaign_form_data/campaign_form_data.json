@@ -1,42 +1,57 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:team-{###}",
- "creation": "2023-11-09 18:04:30.293738",
+ "creation": "2023-12-02 07:34:53.805483",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "name1",
-  "description",
-  "column_break_wleb",
+  "form",
+  "campaign",
+  "data",
+  "column_break_kfsq",
   "state",
   "centre",
-  "agent",
-  "team_lead"
+  "beneficiary",
+  "next_follow_up",
+  "ir",
+  "disposition",
+  "disposition_subset"
  ],
  "fields": [
   {
-   "fieldname": "name1",
-   "fieldtype": "Data",
+   "fieldname": "form",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Name",
+   "in_standard_filter": 1,
+   "label": "Form",
+   "options": "Campaign Form",
    "reqd": 1
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Small Text",
-   "label": "Description"
+   "fieldname": "campaign",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Campaign",
+   "options": "Campaign",
+   "reqd": 1
   },
   {
-   "fieldname": "column_break_wleb",
+   "fieldname": "data",
+   "fieldtype": "JSON",
+   "in_list_view": 1,
+   "label": "Data",
+   "options": "Campaign",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_kfsq",
    "fieldtype": "Column Break"
   },
   {
    "fieldname": "state",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "State",
    "options": "State",
    "reqd": 1
@@ -44,33 +59,50 @@
   {
    "fieldname": "centre",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Centre",
    "options": "Centre",
    "reqd": 1
   },
   {
-   "fieldname": "agent",
-   "fieldtype": "Table MultiSelect",
-   "label": "Agent",
-   "options": "Agents",
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "label": "Beneficiary",
+   "options": "Beneficiary",
    "reqd": 1
   },
   {
-   "fieldname": "team_lead",
+   "fieldname": "next_follow_up",
+   "fieldtype": "Date",
+   "label": "Next Follow Up"
+  },
+  {
+   "fieldname": "ir",
    "fieldtype": "Link",
-   "label": "Team Lead",
-   "options": "User",
+   "label": "IR",
+   "options": "IR",
+   "reqd": 1
+  },
+  {
+   "fieldname": "disposition",
+   "fieldtype": "Link",
+   "label": "Disposition",
+   "options": "DR",
+   "reqd": 1
+  },
+  {
+   "fieldname": "disposition_subset",
+   "fieldtype": "Link",
+   "label": "Disposition Subset",
+   "options": "DS",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 12:18:07.297186",
+ "modified": "2023-12-02 12:35:20.018144",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
- "name": "Team",
- "naming_rule": "Expression",
+ "name": "Campaign Form Data",
  "owner": "Administrator",
  "permissions": [
   {
@@ -99,7 +131,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -110,6 +141,7 @@
    "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -120,21 +152,18 @@
    "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Agent",
-   "share": 1
+   "share": 1,
+   "write": 1
   }
  ],
- "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "name1",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "states": []
 }
