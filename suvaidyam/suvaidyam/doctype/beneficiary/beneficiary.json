@@ -25,7 +25,10 @@
   "village",
   "column_break_pqyy",
   "type_of_contact",
-  "campaign"
+  "campaign",
+  "form_tab",
+  "campaign_name",
+  "form"
  ],
  "fields": [
   {
@@ -144,11 +147,28 @@
    "fieldtype": "Table MultiSelect",
    "label": "Campaign",
    "options": "ChildCampaign"
+  },
+  {
+   "fieldname": "form_tab",
+   "fieldtype": "Tab Break",
+   "label": "Form"
+  },
+  {
+   "fieldname": "campaign_name",
+   "fieldtype": "Link",
+   "label": "Campaign Name",
+   "options": "Campaign"
+  },
+  {
+   "fieldname": "form",
+   "fieldtype": "Link",
+   "label": "Form",
+   "options": "Campaign Form"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 12:24:10.145888",
+ "modified": "2023-12-01 18:57:08.356683",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Beneficiary",

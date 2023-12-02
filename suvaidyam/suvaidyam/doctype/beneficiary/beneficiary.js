@@ -2,6 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Beneficiary", {
+
     refresh(frm) {
         // calling popup
         if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname === 'Agent') {
@@ -47,6 +48,7 @@ frappe.ui.form.on("Beneficiary", {
                 d.show();
             })
         }
+
         // depended dropdown
         frm.fields_dict["centre"].get_query = function (doc) {
             return { filters: { 'state': 'Please select state' } };
@@ -62,11 +64,20 @@ frappe.ui.form.on("Beneficiary", {
             // village
             frm.fields_dict["village"].get_query = function (doc) {
                 return { filters: { 'block': 'Please select block' } };
+            },
+            // campaign
+            frm.fields_dict["campaign"].get_query = function (doc) {
+                return { filters: { 'centre': 'Please select centre' } };
+            },
+            // form
+            frm.fields_dict["campaign_name"].get_query = function (doc) {
+                let filters = (doc?.campaign || []).map(item => item.campaign);
+                return { filters: [['name', 'in', filters]] };
+            },
+            frm.fields_dict["form"].get_query = function (doc) {
+                return { filters: { 'campaign': 'Please select campaign name' } };
             }
-        // campaign
-        frm.fields_dict["campaign"].get_query = function (doc) {
-            return { filters: { 'centre': 'Please select centre' } };
-        }
+
     },
     state: function (frm) {
         frm.fields_dict["centre"].get_query = function (doc) {
@@ -149,12 +160,12 @@ frappe.ui.form.on("Beneficiary", {
                     const matchedBeneficiary = response.message[0];
                     if (matchedBeneficiary) {
                         frm.set_value('branching', 'Child')
-                        frm.set_value('parent1', matchedBeneficiary.name); 
+                        frm.set_value('parent1', matchedBeneficiary.name);
                     } else {
                         frm.set_value('branching', 'Parent')
-                        frm.set_value('parent1', '') 
+                        frm.set_value('parent1', '')
                     }
-                    setTimeout(function() {
+                    setTimeout(function () {
                         frm.set_df_property('parent1', 'read_only', matchedBeneficiary ? 1 : 0);
                         frm.set_df_property('branching', 'read_only', matchedBeneficiary ? 1 : 0);
                     }, 100);
@@ -163,4 +174,121 @@ frappe.ui.form.on("Beneficiary", {
         }
 
     },
+    // form 
+    campaign_name: function (frm) {
+        frm.fields_dict["form"].get_query = function (doc) {
+            if (doc.campaign_name) {
+                return {
+                    filters: { 'campaign': doc.campaign_name },
+                    page_length: 1000
+                };
+            } else {
+                return { filters: { 'campaign': 'Please select campaign name' } };
+            }
+        },
+            frm.set_value('form', '')
+    },
+    // form builder
+    form: function (frm) {
+        if (frm.doc.form) {
+            frappe.call({
+                method: 'frappe.desk.form.load.getdoc',
+                args: {
+                    doctype: 'Campaign Form',
+                    name: frm.doc.form, // Assuming frm.doc.form is the text you want to search
+                    fields: ['*'],
+                    page_length: 1,
+                    order_by: 'modified desc' // Change to 'creation' for creation time
+                },
+                callback: function (response) {
+                    let nextForm = [{
+                        "fieldname": "next_follow_up",
+                        "fieldtype": "Date",
+                        "in_list_view": 1,
+                        "label": "Next Follow Up",
+                    },
+                    {
+                        label: 'IR',
+                        fieldname: 'ir',
+                        fieldtype: 'Link',
+                        options: 'IR',
+                        reqd: 1
+
+                    },
+                    {
+                        label: 'DR',
+                        fieldname: 'dr',
+                        fieldtype: 'Link',
+                        options: 'DR',
+                        reqd: 1
+
+                    },
+                    {
+                        label: 'Sub DR',
+                        fieldname: 'ds',
+                        fieldtype: 'Link',
+                        options: 'DS',
+                        reqd: 1,
+                        get_query: function () {
+                            return { filters: { dr: frm?.doc?.dr } };
+                        }
+
+                    },]
+                    let Data = {}
+                    let next = new frappe.ui.Dialog({
+                        title: response?.docs?.[0]?.title,
+                        fields: nextForm,
+                        size: 'small',
+                        primary_action_label: 'Save',
+                        primary_action(values) {
+                            Data = {
+                                ...Data,
+                                campaign:frm.doc.campaign_name,
+                                form:frm.doc?.form,
+                                doctype:'Campaign Form Data',
+                                state:frm.doc?.state,
+                                centre:frm.doc?.centre,
+                                beneficiary:frm.doc?.name,
+                                next_follow_up:values?.next_follow_up,
+                                ir: values?.ir,
+                                disposition: values?.dr,
+                                disposition_subset: values?.ds
+                            }
+                            console.log(Data)
+                            frappe.call({
+                                method: 'frappe.desk.form.save.savedocs',
+                                args: { 
+                                    doc: Data,
+                                    action:'Save'
+                                },
+                            })
+                            next.hide()
+                        },
+
+                    });
+                    let form = new frappe.ui.Dialog({
+                        title: response?.docs?.[0]?.title,
+                        fields: response?.docs?.[0]?.fields,
+                        size: 'small',
+                        primary_action_label: 'Next',
+                        primary_action(values) {
+                            Data = { data: values }
+                            form.hide()
+                            next.show()
+                        },
+
+                    });
+
+                    if (response?.docs?.[0]?.fields.length >= 2) {
+                        form.show()
+                    } else {
+                        frappe.show_alert({ message: response?.docs?.[0]?.title + " " + "fields not found!", indicator: "yellow" });
+                    }
+                }
+            });
+
+
+        }
+
+    }
 });

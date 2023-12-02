@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class FormBuilder(Document):
+class CampaignFormData(Document):
 	pass
