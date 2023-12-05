@@ -22,7 +22,12 @@ frappe.ui.form.on("Beneficiary", {
                         fieldtype: 'Link',
                         options: 'Campaign',
                         get_query: function () {
-                            let filters = (frm?.doc?.campaign || []).map(item => item.campaign);
+                            let filters = []
+                            if(frm.doc?.campaign_name){
+                                filters.push(frm.doc?.campaign_name)
+                            }else{
+                              filters = (frm?.doc?.campaign || []).map(item => item.campaign);
+                            }
                             return { filters: [['name', 'in', filters]] };
                         }
                     },
@@ -44,11 +49,10 @@ frappe.ui.form.on("Beneficiary", {
                 }
             });
 
-            frm.add_custom_button('+ Make a call', () => {
+            frm.add_custom_button(__('+ Make a call'), () => {
                 d.show();
             })
         }
-
         // depended dropdown
         frm.fields_dict["centre"].get_query = function (doc) {
             return { filters: { 'state': 'Please select state' } };
