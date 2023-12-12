@@ -55,23 +55,58 @@ frappe.ui.form.on("Beneficiary", {
         }
         // depended dropdown
         frm.fields_dict["centre"].get_query = function (doc) {
-            return { filters: { 'state': 'Please select state' } };
-        },
+            if(doc.state){ 
+                return {
+                    filters: { 'state': doc?.state },
+                    page_length: 1000
+                };
+            }else{
+                return { filters: { 'state': 'Please select state' } };
+            }
+        } ,
             // district
             frm.fields_dict["district"].get_query = function (doc) {
-                return { filters: { 'state': 'Please select state' } };
+                if(doc.state){ 
+                    return {
+                        filters: { 'state': doc?.state },
+                        page_length: 1000
+                    };
+                }else{
+                    return { filters: { 'state': 'Please select state' } };
+                }
             },
             // block
             frm.fields_dict["block"].get_query = function (doc) {
-                return { filters: { 'district': 'Please select district' } };
+                if(doc.district){ 
+                    return {
+                        filters: { 'district': doc?.district },
+                        page_length: 1000
+                    };
+                }else{
+                    return { filters: { 'district': 'Please select district' } };
+                }
             },
             // village
             frm.fields_dict["village"].get_query = function (doc) {
-                return { filters: { 'block': 'Please select block' } };
+                if(doc.block){ 
+                    return {
+                        filters: { 'block': doc?.block },
+                        page_length: 1000
+                    };
+                }else{
+                    return { filters: { 'block': 'Please select block' } };
+                }
             },
             // campaign
             frm.fields_dict["campaign"].get_query = function (doc) {
-                return { filters: { 'centre': 'Please select centre' } };
+                if(doc.centre){ 
+                    return {
+                        filters: { 'centre': doc?.centre },
+                        page_length: 1000
+                    };
+                }else{
+                    return { filters: { 'centre': 'Please select centre' } };
+                }
             },
             // form
             frm.fields_dict["campaign_name"].get_query = function (doc) {
@@ -79,8 +114,17 @@ frappe.ui.form.on("Beneficiary", {
                 return { filters: [['name', 'in', filters]] };
             },
             frm.fields_dict["form"].get_query = function (doc) {
-                return { filters: { 'campaign': 'Please select campaign name' } };
+                if(doc.campaign_name){ 
+                    return {
+                        filters: { 'campaign_name': doc?.campaign_name },
+                        page_length: 1000
+                    };
+                }else{ 
+                    return { filters: { 'campaign': 'Please select campaign name' } };
+                } 
             }
+            // 
+          
 
     },
     state: function (frm) {
