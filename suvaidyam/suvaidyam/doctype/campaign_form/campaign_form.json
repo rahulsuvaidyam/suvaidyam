@@ -35,9 +35,10 @@
    "options": "DocField"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-02 12:36:53.977105",
+ "modified": "2024-05-18 13:40:54.947143",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign Form",

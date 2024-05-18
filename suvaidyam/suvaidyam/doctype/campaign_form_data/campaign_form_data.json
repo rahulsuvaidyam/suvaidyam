@@ -97,9 +97,10 @@
    "reqd": 1
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-02 12:35:20.018144",
+ "modified": "2024-05-18 13:41:59.882984",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign Form Data",

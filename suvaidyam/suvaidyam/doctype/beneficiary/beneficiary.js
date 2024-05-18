@@ -2,8 +2,78 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Beneficiary", {
-
     refresh(frm) {
+        if (!$('#customPopup').length) {
+            $('body').append(`
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <div id="customPopup" class="custom-popup card">
+            <button type="button" class="close" id="closePopup" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="custom-popup-body d-flex flex-column align-items-center pt-1">
+                    <div class="bg-success rounded-circle d-flex align-items-center justify-content-center mb-1" style="width: 40px; height: 40px;">
+                        <span class="text-white display-5">${frm?.doc?.first_name?.split('')[0]}</span>
+                    </div>
+                    <p class="mb-0 font-weight-bold">${frm?.doc?.first_name +' '+frm?.doc?.last_name}</p>
+                    <p class="text-muted">Mobile ${frm?.doc?.phone_number}</p>
+               
+                <div class="d-flex justify-content-around mt-1" role="group">
+                    <button type="button" class="btn btn-light rounded-circle mx-2"><i class="fa fa-microphone"></i></button>
+                    <button type="button" class="btn btn-light rounded-circle mx-2"><i class="fa fa-volume-up"></i></button>
+                </div>
+                <div class="pt-3">
+                    <div id="callend" class="bg-danger btn rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                        <i class="fa fa-phone text-white display-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                <style>
+                    #closePopup{
+                        position: absolute;
+                    }
+                    .custom-popup {
+                        width:260px;
+                        height:210px;
+                        position: fixed;
+                        bottom: 8px;
+                        right: 8px;
+                        margin: 0;
+                        padding: 10px;
+                        background: white;
+                        border: 1px solid #ccc;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        z-index: 1050; 
+                        display: none;
+                    }
+                    .custom-popup-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 1px solid #eee;
+                        // padding-bottom: 10px;
+                        margin-bottom: 10px;
+                    }
+                    .custom-popup-footer {
+                        display: flex;
+                        justify-content: flex-end;
+                        border-top: 1px solid #eee;
+                        padding-top: 10px;
+                        margin-top: 10px;
+                    }
+                </style>
+            `);
+        }
+
+        // Add a custom button to the form
+        frm.add_custom_button('Make Call', () => {
+            $('#customPopup').show(); 
+        });
+        $('#closePopup , #callend').off('click').on('click', function() {
+            $('#customPopup').hide();
+            frm.refresh();
+        }); 
         // calling popup
         if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname === 'Agent') {
             let d = new frappe.ui.Dialog({

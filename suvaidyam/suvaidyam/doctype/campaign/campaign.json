@@ -83,9 +83,10 @@
    "options": "ChildBeneficiary"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 12:13:25.738249",
+ "modified": "2024-05-18 13:42:38.920411",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign",
