@@ -67,15 +67,13 @@ frappe.ui.form.on("Beneficiary", {
         }
 
         // Add a custom button to the form
-        frm.add_custom_button('Make Call', () => {
-            $('#customPopup').show(); 
-        });
+       
         $('#closePopup , #callend').off('click').on('click', function() {
             $('#customPopup').hide();
             frm.refresh();
         }); 
         // calling popup
-        if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname === 'Agent') {
+        // if (frm?.doc?.first_name !== undefined && frappe.session.user_fullname === 'Agent') {
             let d = new frappe.ui.Dialog({
                 title: 'Make a call',
                 fields: [
@@ -103,8 +101,8 @@ frappe.ui.form.on("Beneficiary", {
                 primary_action(values) {
                     if (values?.campaign) {
                         d.hide();
-                        frappe.show_alert({ message: "Calling to " + values.full_name, indicator: "green" });
-                        // frappe.set_route('List', 'Campaign',{name:values?.campaign});
+                        // frappe.show_alert({ message: "Calling to " + values.full_name, indicator: "green" });
+                        $('#customPopup').show(); 
                     } else {
                         frappe.show_alert({ message: "Please select to campaign", indicator: "yellow" });
                     }
@@ -117,7 +115,7 @@ frappe.ui.form.on("Beneficiary", {
             frm.add_custom_button('+ Make a call', () => {
                 d.show();
             })
-        }
+        // }
 
         // depended dropdown
         frm.fields_dict["centre"].get_query = function (doc) {
