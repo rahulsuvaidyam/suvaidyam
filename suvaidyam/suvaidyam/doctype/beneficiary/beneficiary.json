@@ -28,7 +28,9 @@
   "campaign",
   "form_tab",
   "campaign_name",
-  "form"
+  "form",
+  "tab_4_tab",
+  "name1"
  ],
  "fields": [
   {
@@ -164,11 +166,22 @@
    "fieldtype": "Link",
    "label": "Form",
    "options": "Campaign Form"
+  },
+  {
+   "fieldname": "tab_4_tab",
+   "fieldtype": "Tab Break",
+   "label": "Tab 4"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "HTML",
+   "label": "Name",
+   "options": "<div id=\"beneficiary_details\"></div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-01 18:57:08.356683",
+ "modified": "2024-05-27 10:26:33.323265",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Beneficiary",
