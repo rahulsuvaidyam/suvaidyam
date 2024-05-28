@@ -191,16 +191,6 @@ frappe.ui.form.on("Beneficiary", {
             height: 50%
         }
 
-        #avtar_child {
-            width: 30px;
-            height: 30px;
-            background-color: #f4f4f4;
-            border-radius: 100%;
-            display:flex;
-            justify-content: center;
-            align-items: center;        
-        }
-
         #avtar_head {
             margin-left: 10px;
         }
@@ -262,32 +252,25 @@ frappe.ui.form.on("Beneficiary", {
         <div id="card_1">
             <div id="child_card1" class="card ">
                 <div id="avtar_main" class="d-flex justify-content-between">
-                    <div id="gap_avtar">
-                        <p id="avtar_child">A</p>
+                    <div id="gap_avtar"> 
                         <div>
-                            <p>Abhishek Kumar</p>
-                            <p>M || <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <p>${frm?.doc?.first_name + ' ' + frm?.doc?.last_name}</p>
+                            <p>${frm?.doc?.gender?.split('')[0]} || <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-telephone" viewBox="0 0 16 16">
                                     <path
                                         d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
-                                </svg> <span  style="color: blue;">8989920776</span></p>
+                                </svg> <span  style="color: blue;">${frm?.doc?.phone_number}</span></p>
                             <div class="d-flex" id="location"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-geo-alt" viewBox="0 0 16 16">
                                     <path
                                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
                                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                 </svg>
-                                <div id="span_p">Panjab,Moga,Panjab</div></div>
+                                <div id="span_p">${frm?.doc?.address_1}</div></div>
                         </div>
                     </div>
 
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-                        </svg>
-                    </div>
+                   
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
@@ -301,16 +284,7 @@ frappe.ui.form.on("Beneficiary", {
                     <p id="Outbound">Outbound</p>
                     <p id="Campgain">Campgain</p>
                     <div id="dropdown" class="dropdown">
-                        <a id="d">Option 1</a>
-                        <a id="d">Option 2</a>
-                        <a>Option 3</a>
-                        <a>Option 4</a>
-                        <a>Option 5</a>
-                        <a>Option 6</a>
-                        <a>Option 7</a>
-                        <a>Option 8</a>
-                        <a>Option 9</a>
-                        <a>Option 10</a>
+                        ${frm?.doc?.campaign.map(e=> `<a id="d">${e.campaign}</a>`).join('\n')}
                     </div>
                 </div>
             </div>
