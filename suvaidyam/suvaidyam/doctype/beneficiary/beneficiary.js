@@ -146,7 +146,7 @@ frappe.ui.form.on("Beneficiary", {
                 return { filters: { 'campaign': 'Please select campaign name' } };
             }
 
-
+        //   ================= Custom Html Block =================
         document.getElementById('beneficiary_details').innerHTML = `
         <style>
         * {
@@ -198,6 +198,7 @@ frappe.ui.form.on("Beneficiary", {
         #child_card2_inner {
             display: flex;
             flex-direction: column;
+            
         }
 
         #Inbounds,
@@ -206,13 +207,15 @@ frappe.ui.form.on("Beneficiary", {
             cursor: pointer;
             padding: 5px;
             margin: 5px 0;
+            border-left:5px solid transparent;
+
         }
 
         .dropdown {
             min-width: 160px;
             max-height: 150px;
             padding: 0px 16px;
-            overflow-y: auto
+            overflow-y: auto;
         }
 
         .dropdown a {
@@ -220,6 +223,7 @@ frappe.ui.form.on("Beneficiary", {
             padding: 4px 12px;
             text-decoration: none;
             display: block;
+            border-left:5px solid transparent;
         }
 
         .dropdown a:hover {
@@ -227,10 +231,13 @@ frappe.ui.form.on("Beneficiary", {
         }
 
         #in_bounds {
+            width: 90px;
+            height:23px;
             background-color: #f4f4f4;
             border-radius: 40px;
-            padding: 4px 8px;
             font-size: 13px;
+            text-align:center;
+            padding:1.5px
         }
         #span_p{
             margin-top:-2px;
@@ -244,6 +251,18 @@ frappe.ui.form.on("Beneficiary", {
             display: flex;
             gap:5px;
             padding: 10px
+        }
+        .his_dropdown{
+            min-width: 160px;
+            max-height: 150px;
+            padding: 0px 16px;
+            overflow-y: auto
+        }
+         .his_dropdown a {
+            color: black;
+            padding: 4px 12px;
+            text-decoration: none;
+            display: block;
         }
     </style>
 
@@ -274,17 +293,17 @@ frappe.ui.form.on("Beneficiary", {
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
-                    <p id="in_bounds">Inbounds : 0</p>
-                    <p id="in_bounds">Outbounds : 0</p>
+                    <p id="in_bounds">Inbound : 0</p>
+                    <p id="in_bounds">Outbound : 0</p>
                 </div>
             </div>
             <div id="child_card2" class="card mt-2 ">
                 <div id="child_card2_inner">
-                    <p id="Inbounds">Inbounds</p>
+                    <p id="Inbounds">Inbound</p>
                     <p id="Outbound">Outbound</p>
                     <p id="Campgain">Campgain</p>
                     <div id="dropdown" class="dropdown">
-                        ${frm?.doc?.campaign.map(e=> `<a id="d">${e.campaign}</a>`).join('\n')}
+                     ${frm?.doc?.campaign.map(e => `<a id=${e.campaign}>${e.campaign}</a>`).join('\n')}
                     </div>
                 </div>
             </div>
@@ -300,9 +319,9 @@ frappe.ui.form.on("Beneficiary", {
                 </svg>
                 <p class="">History</p>
             </div>
-            <div id="dropdown" class="dropdown">
-                <a id="d">Option 1</a>
-                <a id="d">Option 2</a>
+            <div id="dropdown" class="his_dropdown">
+                <a>Option 1</a>
+                <a>Option 2</a>
                 <a>Option 3</a>
                 <a>Option 4</a>
                 <a>Option 5</a>
@@ -310,35 +329,280 @@ frappe.ui.form.on("Beneficiary", {
                 <a>Option 7</a>
                 <a>Option 8</a>
                 <a>Option 9</a>
-                <a>Option 10</a>
+                <a>Option 10</a>    
             </div>
         </div>
 
     </div>
     </body>
     `
-        const paragraphs = document.querySelectorAll("#Inbounds,#Outbound, #d");
         const sidePage = document.getElementById("card_2")
+        let datas;
+        async function fetchData(campaignId) {
+            try {
+                const response = await new Promise((resolve, reject) => {
+                    frappe.call({
+                        method: 'frappe.desk.reportview.get',
+                        args: {
+                            doctype: 'Campaign Form',
+                            fields: ['name', 'title'],
+                            filters: [["Campaign Form", "campaign", "=", campaignId]],
+                            page_length: 'all',
+                            order_by: 'modified desc',
+                        },
+                        callback: function (response) {
+                            if (response && response.message && response.message.values) {
+                                resolve(response.message.values);
+                                // console.log(response, "response")
+                            } else {
+                                reject("No data found");
+                            }
+                        }
+                    });
+                });
+
+                datas = response;
+                // let data = [
+                //     { id: 1, type: "New", data: ["Name", "Email", "Password"] },
+                //     { id: 2, type: "Test For Aadhar", data: ["Name", "Email", "Password", "Aadhar Number", "Test Type"] },
+                //     { id: 3, type: "Test", data: ["Name", "Email"] }
+                // ];
+                let values = response.map(item => item[1]);
+                if (sidePage) {
+                    let paragraphs = values.map((value, index) => `<p class="horizontal-paragraph" data-index="${index}"><span class="bold">${value}</span></p>`).join('');
+                    sidePage.innerHTML = `
+                        <style>
+                            .horizontal-container {
+                                white-space: nowrap; 
+                                font-size: 0;
+                            }
+                            .horizontal-paragraph {
+                                display: inline-block; 
+                                margin-right: 20px;
+                                vertical-align: top; 
+                                font-size: 14px; 
+                                line-height: 1.5;
+                                cursor: pointer; /* Add cursor pointer to indicate clickable */
+                            }
+                             
+                            .horizontal-paragraph:not(:last-child) {
+                                margin-right: 30px;
+                            }
+                            .horizontal-paragraph p {
+                                margin: 0; 
+                                color: #333;
+                            }
+                            .data-inputs {
+                                margin-top: 10px;
+                            }
+                            .data-inputs input {
+                                display: block;
+                                margin-bottom: 5px;
+                            }
+                            .clicked-data {
+                                margin-top: 10px;
+                                font-weight: bold;
+                            }
+                             .horizontal-paragraph.active {
+                                    font-weight: bold; 
+                                    border-bottom: 1.5px solid black;
+                                }
+                            .horizontal-paragraph:not(.active) {
+                            color: #888; /* Gray color for inactive paragraphs */
+                            }
+
+                        </style>
+                        <div class="horizontal-container">${paragraphs}</div>
+                        <div id="form-container"></div>`;
+
+                    const horizontalParagraphs = sidePage.querySelectorAll('.horizontal-paragraph');
+                    horizontalParagraphs.forEach((paragraph, index) => {
+                        paragraph.addEventListener('click', () => {
+                            horizontalParagraphs.forEach((p) => {
+                                p.classList.remove('active');
+                            });
+                            paragraph.classList.add('active');
+
+                            // Hide input boxes for other paragraphs
+                            // sidePage.querySelectorAll('.data-inputs').forEach((inputs) => {
+                            //     inputs.remove(); // Remove previously displayed input boxes
+                            // });
+                            // // Show clicked data
+                            // // const clickedData = data[index].data.join(', ');
+                            // // sidePage.querySelector('.clicked-data').innerHTML = `<p>Clicked Data: ${clickedData}</p>`;
+
+                            // // Create input boxes based on data type
+                            // let inputBoxes = document.createElement('div');
+                            // inputBoxes.classList.add('data-inputs');
+                            // inputBoxes.dataset.index = index;
+                            // inputBoxes.innerHTML = data[index].data.map((input, idx) => `
+                            // <input type="text" class="input-${idx} form-control" placeholder="${input}">`
+                            // ).join('');
+
+                            // let tab_id;
+
+                            // frappe.call({
+                            //     method: 'frappe.desk.form.load.getdoc',
+                            //     args: {
+                            //         doctype: 'Campaign Form',
+                            //         fields: ['fields'],
+                            //         name: datas[index][0],
+                            //         order_by: 'modified desc',
+                            //     },
+                            //     callback: function (response) {
+                            //         tab_id = response.docs[0].fields;
+                            //         // console.log("tab_id", tab_id);
+
+                            //         let sidePage = document.querySelector('.clicked-data');
+                            //         if (sidePage) {
+                            //             let htmlContent = tab_id.map(item => `
+                            //             <div class="item">
+                            //             <p>fieldname: ${item.fieldname}</p>
+                            //             <p>fieldtype: ${item.fieldtype}</p>
+                            //                </div>`).join('');
+                            //             sidePage.innerHTML = htmlContent;
+                            //         } else {
+                            //             console.error('Element with class "clicked-data" not found.');
+                            //         }
+                            //     }
+                            // });
+
+                            let tab_id;
+
+                            frappe.call({
+                                method: 'frappe.desk.form.load.getdoc',
+                                args: {
+                                    doctype: 'Campaign Form',
+                                    fields: ['fields'],
+                                    name: datas[index][0],
+                                    order_by: 'modified desc',
+                                },
+                                callback: function (response) {
+                                    tab_id = response.docs[0].fields;
+
+                                    let sidePage = document.querySelector('#form-container');
+                                    if (sidePage) {
+                                        // console.log(tab_id);
+                                        let formContent = tab_id.map(item => {
+                                            switch (item.fieldtype) {
+                                                case 'Data':
+                                                    return `
+                            <div class="form-group">
+                                <label for="${item.fieldname}">${item.fieldname}</label>
+                                <input type="text" id="${item.fieldname}" name="${item.fieldname}" class="form-control">
+                            </div>
+                        `;
+                                                case "Select":
+                                                    // Assuming item.options is a comma-separated string of options
+                                                    let options = item.options.split('\n').map(option => `<option value="${option}">${option}</option>`).join('');
+                                                    return `
+                            <div class="form-group">
+                                <label for="${item.fieldname}">${item.fieldname}</label>
+                                <select id="${item.fieldname}" name="${item.fieldname}" class="form-control">
+                                    ${options}
+                                </select>
+                            </div>
+                        `;
+                                                case 'Date':
+                                                    return `
+                            <div class="form-group">
+                                <label for="${item.fieldname}">${item.fieldname}</label>
+                                <input type="date" id="${item.fieldname}" name="${item.fieldname}" class="form-control">
+                            </div>
+                        `;
+                                                // Add more cases as needed for different field types
+                                                default:
+                                                    return `
+                            <div class="form-group">
+                                <label for="${item.fieldname}">${item.fieldname}</label>
+                                <input type="text" id="${item.fieldname}" name="${item.fieldname}" class="form-control">
+                            </div>
+                        `;
+                                            }
+                                        }).join('');
+                                        sidePage.innerHTML = `<form>${formContent}</form>`;
+                                    } else {
+                                        console.error('Element with class "clicked-data" not found.');
+                                    }
+                                }
+                            });
+
+                            // const clickedData = datas[index];
+                            // sidePage.querySelector('.clicked-data').innerHTML = `<p>Clicked Data: ${abc}</p>`
+
+                            // console.log("id", datas[index][0]);
+                            // console.log(datas, 'datas'); // Log clicked data to console
+
+                            // // Find the next map data section after the clicked paragraph
+                            // let nextMapDataIndex = index + 1;
+                            // while (nextMapDataIndex < data.length && data[nextMapDataIndex].type !== 'New') {
+                            //     nextMapDataIndex++;
+                            // }
+
+                            // // Insert input boxes after the last map data section
+                            // if (nextMapDataIndex < data.length) {
+                            //     const nextParagraph = sidePage.querySelector(`[data-index="${nextMapDataIndex}"]`);
+                            //     nextParagraph.parentNode.insertBefore(inputBoxes, nextParagraph);
+                            // } else {
+                            //     sidePage.appendChild(inputBoxes);
+                            // }
+                        });
+                    });
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
         const contentMap = {
             "Inbounds": "This is the content for Inbounds.",
             "Outbound": "This is the content for Outbound.",
-            // "Campgain": "",
-            "d": "Option1.",
-
         };
+        function deselectParagraphs() {
+            const paragraphs = document.querySelectorAll("#Inbounds, #Outbound");
+            paragraphs.forEach(p => {
+                p.style.backgroundColor = "";
+                p.style.borderLeft = '';
+                p.style.color = '';
+            });
+            sidePage.innerHTML = "";
+        }
+        frm?.doc?.campaign.length > 0 && frm?.doc?.campaign.forEach(camp => {
+            let paragraph = document.querySelector(`#${camp.campaign}`);
+            paragraph.addEventListener("click", function () {
+                deselectParagraphs()
+                frm?.doc?.campaign.forEach((campaign) => {
+                    if (campaign.campaign !== camp.campaign) {
+                        let paragraph = document.querySelector(`#${campaign.campaign}`);
+                        paragraph.style.backgroundColor = "";
+                        paragraph.style.borderLeft = '5px solid transparent';
+                    }
+                })
+                this.style.backgroundColor = "#f4f4f4";
+                this.style.borderLeft = '5px solid blue';
+                fetchData(camp.campaign);
+            });
+        });
+        // ====== #Inbounds, #Outbound ===
+        const paragraphs = document.querySelectorAll("#Inbounds, #Outbound");
 
         paragraphs.forEach(paragraph => {
-            paragraph.addEventListener("click", function () {
-                paragraphs.forEach(p => {
-                    p.style.backgroundColor = "";
-                    p.style.borderLeft = '';
-                    p.style.color = '';
+            paragraph.addEventListener("click", function (event) {
+                event.stopPropagation();
+                deselectParagraphs();
+                frm?.doc?.campaign.length > 0 && frm?.doc?.campaign.forEach(camp => {
+                    let paragraph = document.querySelector(`#${camp.campaign}`);
+                    paragraph.style.backgroundColor = "";
+                    paragraph.style.borderLeft = '5px solid transparent';
                 });
                 this.style.backgroundColor = "#f4f4f4";
                 this.style.borderLeft = '5px solid blue';
                 sidePage.innerHTML = contentMap[this.id];
             });
         });
+
+        //   =================== Custom Html Block =================
     },
     state: function (frm) {
         frm.fields_dict["centre"].get_query = function (doc) {
@@ -515,7 +779,7 @@ frappe.ui.form.on("Beneficiary", {
                                 disposition: values?.dr,
                                 disposition_subset: values?.ds
                             }
-                            console.log(Data)
+                            // console.log(Data)
                             frappe.call({
                                 method: 'frappe.desk.form.save.savedocs',
                                 args: {

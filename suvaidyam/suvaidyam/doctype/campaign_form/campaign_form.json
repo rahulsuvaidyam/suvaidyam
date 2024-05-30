@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format: Camp-{###}",
  "creation": "2023-11-17 11:56:00.862893",
  "default_view": "List",
  "doctype": "DocType",
@@ -38,10 +39,11 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-18 13:40:54.947143",
+ "modified": "2024-05-28 16:10:00.440516",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign Form",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
