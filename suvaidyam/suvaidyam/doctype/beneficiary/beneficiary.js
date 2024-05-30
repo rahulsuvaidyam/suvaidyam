@@ -299,7 +299,7 @@ frappe.ui.form.on("Beneficiary", {
             </div>
             <div id="child_card2" class="card mt-2 ">
                 <div id="child_card2_inner">
-                    <p id="Inbounds">Inbounds</p>
+                    <p id="Inbounds">Inbound</p>
                     <p id="Outbound">Outbound</p>
                     <p id="Campgain">Campgain</p>
                     <div id="dropdown" class="dropdown">
