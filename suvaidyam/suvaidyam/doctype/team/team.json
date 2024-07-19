@@ -60,13 +60,13 @@
    "fieldname": "team_lead",
    "fieldtype": "Link",
    "label": "Team Lead",
-   "options": "User",
+   "options": "SVA User",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 12:18:07.297186",
+ "modified": "2024-07-19 14:30:12.901921",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Team",

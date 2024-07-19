@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "creation": "2023-12-02 07:34:53.805483",
  "default_view": "List",
@@ -100,7 +101,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-18 13:41:59.882984",
+ "modified": "2024-07-19 13:54:31.328297",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign Form Data",

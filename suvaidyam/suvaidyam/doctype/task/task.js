@@ -10,7 +10,7 @@ frappe.ui.form.on("Task", {
                 return { filters: { 'centre': 'Please select centre' } };
             },
             frm.fields_dict["agent"].get_query = function (doc) {
-                return { filters: { 'centre': 'Please select centre' } };
+                return { filters: { 'custom_centre': 'Please select centre' } };
             },
             frm.fields_dict["team"].get_query = function (doc) {
                 return { filters: { 'centre': 'Please select centre' } };
@@ -45,11 +45,11 @@ frappe.ui.form.on("Task", {
         frm.fields_dict["agent"].get_query = function (doc) {
             if (doc.centre) {
                 return {
-                    filters: { 'centre': doc.centre, 'role_profile_name': 'Agent' },
+                    filters: { 'custom_centre': doc.centre, 'role_profile': 'Agent' },
                     page_length: 1000
                 };
             } else {
-                return { filters: { 'centre': 'Please select centre' } };
+                return { filters: { 'custom_centre': 'Please select centre' } };
             }
         },
             frm.set_value('agent', '')

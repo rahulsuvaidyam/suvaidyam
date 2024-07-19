@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:centre-{###}",
  "creation": "2023-11-09 17:20:12.455131",
@@ -10,7 +11,6 @@
  "field_order": [
   "name1",
   "state",
-  "column_break_jtco",
   "program",
   "centre_of_type"
  ],
@@ -31,10 +31,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_jtco",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "program",
    "fieldtype": "Link",
    "label": "Program",
@@ -47,6 +43,7 @@
    "options": "Centre Type"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -54,7 +51,7 @@
    "link_fieldname": "centre"
   }
  ],
- "modified": "2023-11-16 12:07:56.042373",
+ "modified": "2024-07-19 13:53:37.203733",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Centre",
