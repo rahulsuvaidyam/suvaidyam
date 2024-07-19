@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "creation": "2023-11-09 21:03:13.913064",
  "default_view": "List",
@@ -105,8 +106,9 @@
   {
    "default": "+91-",
    "fieldname": "phone_number",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Phone Number",
+   "length": 10,
    "reqd": 1
   },
   {
@@ -179,9 +181,10 @@
    "options": "<div id=\"beneficiary_details\"></div>"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-27 10:26:33.323265",
+ "modified": "2024-07-19 13:52:41.493544",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Beneficiary",

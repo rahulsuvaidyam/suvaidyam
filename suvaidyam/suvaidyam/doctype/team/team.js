@@ -7,10 +7,10 @@ frappe.ui.form.on("Team", {
             return { filters: { 'state': 'Please select state' } };
         },
         frm.fields_dict["agent"].get_query = function (doc) {
-            return { filters: { 'centre': 'Please select centre' } };
+            return { filters: { 'custom_centre': 'Please select centre' } };
         }
         frm.fields_dict["team_lead"].get_query = function (doc) {
-            return { filters: { 'centre': 'Please select centre' } };
+            return { filters: { 'custom_centre': 'Please select centre' } };
         }
     },
     state: function (frm) {
@@ -30,14 +30,14 @@ frappe.ui.form.on("Team", {
                 console.log(doc)
                 return {
                     filters: {
-                        'centre': doc.centre,
+                        'custom_centre': doc.centre,
                         // Filter users by role from tabUserRole table
-                        'role_profile_name': 'Agent' 
+                        'role_profile': 'Agent' 
                     },
                     page_length: 1000
                 };
             }else{
-                return { filters: { 'centre': 'Please select centre' } };
+                return { filters: { 'custom_centre': 'Please select centre' } };
             }
         },
         frm.set_value('agent', '')
@@ -45,11 +45,11 @@ frappe.ui.form.on("Team", {
             if(doc.centre){
                 console.log(doc)
                 return {
-                    filters: { 'centre': doc.centre ,'role_profile_name': 'Team Lead' },
+                    filters: { 'custom_centre': doc.centre ,'role_profile': 'Team Lead' },
                     page_length: 1000
                 };
             }else{
-                return { filters: { 'centre': 'Please select centre' } };
+                return { filters: { 'custom_centre': 'Please select centre' } };
             }
         }
         frm.set_value('team_lead', '')

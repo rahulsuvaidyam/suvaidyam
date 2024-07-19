@@ -1,0 +1,35 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"ee0Y6rhY4U\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"IR\",\"col\":12}}]",
+ "creation": "2024-07-19 13:22:53.999859",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "primitive-dot",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "IR List",
+ "links": [],
+ "modified": "2024-07-19 14:10:52.036011",
+ "modified_by": "Administrator",
+ "module": "SUVAIDYAM",
+ "name": "IR List",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Master",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "IR",
+   "label": "IR",
+   "quick_list_filter": "[]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 11.0,
+ "shortcuts": [],
+ "title": "IR List"
+}

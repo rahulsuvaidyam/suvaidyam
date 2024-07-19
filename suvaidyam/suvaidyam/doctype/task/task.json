@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:task-{####}",
  "creation": "2023-11-10 13:13:07.098197",
@@ -88,7 +89,7 @@
    "fieldtype": "Link",
    "label": "Agent",
    "mandatory_depends_on": "eval:(doc.allocated_to==='Agent')",
-   "options": "User"
+   "options": "SVA User"
   },
   {
    "depends_on": "eval:(doc.allocated_to==='Team')",
@@ -99,9 +100,10 @@
    "options": "Team"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 12:16:37.828984",
+ "modified": "2024-07-19 14:50:26.236272",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Task",

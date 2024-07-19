@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:cam-{###}",
  "creation": "2023-11-09 17:30:47.878833",
@@ -86,7 +87,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-18 13:42:38.920411",
+ "modified": "2024-07-19 13:55:44.575675",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Campaign",

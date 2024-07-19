@@ -1,0 +1,35 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"pNpVQ1gWaJ\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Task\",\"col\":12}}]",
+ "creation": "2024-07-19 13:18:18.450514",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "milestone",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Tasks",
+ "links": [],
+ "modified": "2024-07-19 14:10:51.903727",
+ "modified_by": "Administrator",
+ "module": "SUVAIDYAM",
+ "name": "Tasks",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Task",
+   "label": "Task",
+   "quick_list_filter": "[]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 9.0,
+ "shortcuts": [],
+ "title": "Tasks"
+}

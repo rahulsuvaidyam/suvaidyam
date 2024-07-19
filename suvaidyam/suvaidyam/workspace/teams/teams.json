@@ -1,0 +1,35 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"0f8iaX-1LW\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Team\",\"col\":12}}]",
+ "creation": "2024-07-19 13:12:13.487711",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "share",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Teams",
+ "links": [],
+ "modified": "2024-07-19 14:10:51.602206",
+ "modified_by": "Administrator",
+ "module": "SUVAIDYAM",
+ "name": "Teams",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Team",
+   "label": "Team",
+   "quick_list_filter": "[]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 5.0,
+ "shortcuts": [],
+ "title": "Teams"
+}
