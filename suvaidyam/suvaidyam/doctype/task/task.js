@@ -3,6 +3,10 @@
 
 frappe.ui.form.on("Task", {
     refresh(frm) {
+        frm.add_custom_button('+ Make a call', () => {
+            let beneficiary_name = frm.doc.beneficiaries[0].beneficiary;
+            frappe.set_route('Form', 'Beneficiary', beneficiary_name+ '%23tab_4_tab');
+        })
         frm.fields_dict["centre"].get_query = function (doc) {
             return { filters: { 'state': 'Please select state' } };
         },

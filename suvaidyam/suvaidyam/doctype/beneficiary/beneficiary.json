@@ -27,9 +27,6 @@
   "column_break_pqyy",
   "type_of_contact",
   "campaign",
-  "form_tab",
-  "campaign_name",
-  "form",
   "tab_4_tab",
   "name1"
  ],
@@ -153,26 +150,9 @@
    "options": "ChildCampaign"
   },
   {
-   "fieldname": "form_tab",
-   "fieldtype": "Tab Break",
-   "label": "Form"
-  },
-  {
-   "fieldname": "campaign_name",
-   "fieldtype": "Link",
-   "label": "Campaign Name",
-   "options": "Campaign"
-  },
-  {
-   "fieldname": "form",
-   "fieldtype": "Link",
-   "label": "Form",
-   "options": "Campaign Form"
-  },
-  {
    "fieldname": "tab_4_tab",
    "fieldtype": "Tab Break",
-   "label": "Tab 4"
+   "label": "Form"
   },
   {
    "fieldname": "name1",
@@ -184,7 +164,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-19 13:52:41.493544",
+ "modified": "2024-07-19 16:46:28.490213",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Beneficiary",
