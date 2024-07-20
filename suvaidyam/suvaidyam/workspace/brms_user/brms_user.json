@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "BRMS User",
  "links": [],
- "modified": "2024-07-19 14:11:19.358080",
+ "modified": "2024-07-19 20:34:28.313450",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "BRMS User",
@@ -28,7 +28,14 @@
    "quick_list_filter": "[]"
   }
  ],
- "roles": [],
+ "roles": [
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "Administrator"
+  }
+ ],
  "sequence_id": 4.0,
  "shortcuts": [],
  "title": "BRMS User"

@@ -38,6 +38,7 @@
    "default": "INITIATED",
    "fieldname": "call_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Call Status",
    "options": "MISSED\nANSWER\nCANCEL\nINITIATED"
   },
@@ -63,6 +64,7 @@
   {
    "fieldname": "campaign",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Campaign",
    "options": "Campaign"
   },
@@ -81,6 +83,7 @@
   {
    "fieldname": "task",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Task",
    "options": "Task"
   },
@@ -99,12 +102,14 @@
   {
    "fieldname": "agent_call_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Agent Call Status",
    "options": "\nMISSED\nANSWER\nCANCEL"
   },
   {
    "fieldname": "beneficiary_call_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Beneficiary Call Status",
    "options": "\nMISSED\nANSWER\nCANCEL"
   },
@@ -126,7 +131,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-19 14:46:29.115651",
+ "modified": "2024-07-19 20:54:39.675431",
  "modified_by": "Administrator",
  "module": "SUVAIDYAM",
  "name": "Call Logs",
@@ -154,8 +159,7 @@
    "report": 1,
    "role": "Admin",
    "select": 1,
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "email": 1,
@@ -165,8 +169,7 @@
    "report": 1,
    "role": "Program Manager",
    "select": 1,
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "email": 1,
@@ -176,8 +179,7 @@
    "report": 1,
    "role": "Team Lead",
    "select": 1,
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "email": 1,
@@ -187,13 +189,12 @@
    "report": 1,
    "role": "Agent",
    "select": 1,
-   "share": 1,
-   "write": 1
+   "share": 1
   }
  ],
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "phone_number"
+ "title_field": "beneficiary"
 }
